@@ -53,11 +53,11 @@ def scrape_into_db():
 
         to_insert += [(reviewer, today.isoformat(), queue_size, average_age, oldest)]
 
-        conn = sqlite3.connect('queues.db')
-        c = conn.cursor()
-        c.executemany('INSERT INTO queues VALUES (?,?,?,?,?)', to_insert)
-        conn.commit()
-        conn.close()
+    conn = sqlite3.connect('queues.db')
+    c = conn.cursor()
+    c.executemany('INSERT INTO queues VALUES (?,?,?,?,?)', to_insert)
+    conn.commit()
+    conn.close()
 
 if __name__ == "__main__":
     scrape_into_db()
