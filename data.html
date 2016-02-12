@@ -1,0 +1,25 @@
+<script type="text/javascript">
+  var chart = new CanvasJS.Chart("{name}-chart", {{
+    theme: "theme2",
+    stitle: {{
+      text: "{name}"
+    }},
+    animationEnabled: false,
+    axisX: {{
+      valueFormatString: "DD-MMM",
+      interval: 1,
+      intervalType: "day"
+    }},
+    axisY: {{
+      includeZero: true,
+      labelFontWeight: "lighter",
+      tickThickness: 0.5,
+      gridThickness: 0.5
+    }},
+    data: [
+      {data}
+    ]
+  }});
+
+  chart.render();
+</script>

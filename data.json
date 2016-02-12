@@ -1,0 +1,10 @@
+{{        
+  type: "line",
+  lineThickness: 1,
+  axisYType: "{axis}",
+  showInLegend: true,
+  legendText: "{legend}",
+  dataPoints: [
+    {points}
+  ]
+}}

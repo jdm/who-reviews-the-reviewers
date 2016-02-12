@@ -1,0 +1,14 @@
+  <tr>
+    <td colspan="2"><h3>{name}</h3></td>
+  </tr>
+  <tr class="{empty}">
+    <td style="width: 50%">
+      <div id="{name}-chart" style="height: 300px"></div>
+    </td>
+    <td>
+      <ul>
+        <li>In queue: <a href="https://github.com/servo/servo/pulls?q=is%3Aopen+is%3Apr+label%3AS-awaiting-review+assignee%3A{name}">{queue} PRs</a></li>
+        <li>Oldest: {oldest} days since PR opened</li>
+        <li>Average: {average} days since PR opened</li>
+      </ul>
+  </tr>

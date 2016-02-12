@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<title>Servo review queue overview</title>
+<link rel="stylesheet" href="style.css">
+<script src="canvasjs.min.js"></script>
+<body>
+<center><h1>Review queue overview</h1></center>
+<center><input type="checkbox" onchange="toggleEmpty()"> Hide empty queues</center>
+<table style="width: 100%">
+{entries}
+</table>
+{scripts}
+<script>
+function toggleEmpty() {{
+  rows = document.getElementsByClassName('empty');
+  for (var i = 0; i < rows.length; i++) {{
+    if (rows[i].style.display != 'none') {{
+      rows[i].style.display = 'none';
+      rows[i].previousElementSibling.style.display = 'none';
+    }} else {{
+      rows[i].style.display = 'inline';
+      rows[i].previousElementSibling.style.display = 'inline';
+    }}
+  }}
+}}
+
+document.querySelector('input').checked = true;
+toggleEmpty();
+</script>
+</body>
+</html>
