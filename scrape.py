@@ -1,3 +1,5 @@
+import base64
+import ConfigParser
 import datetime
 try:
     import json
@@ -28,13 +30,21 @@ def get_reviewers():
 def scrape_into_db():
     reviewers = get_reviewers()
 
+    config = ConfigParser.RawConfigParser()
+    config.read('./config')
+    user = config.get('github', 'user')
+    token = config.get('github', 'token')
+
     queue_url = "https://api.github.com/repos/servo/servo/issues?assignee={0}&labels=S-awaiting-review"
     to_insert = []
     today = datetime.datetime.today()
 
     for reviewer in reviewers:
         print "Processing %s" % reviewer
-        req = urllib2.Request(queue_url.format(reviewer), headers={'Accept': 'application/vnd.github.v3+json'})
+        req = urllib2.Request(queue_url.format(reviewer), headers={
+            'Accept': 'application/vnd.github.v3+json',
+            'Authorization': 'Basic ' + base64.standard_b64encode('%s:%s' % (user, token)).replace('\n', ''),
+        })
         reviews = urllib2.urlopen(req)
         data = json.loads(reviews.read())
         queue_size = len(data)
