@@ -40,7 +40,7 @@ for reviewer in reviewers:
     
     all_points = []
     points = ["{{ x: new Date({year},{month},{day}), y: {size} }}".format(year=d.year,
-                                                                          month=d.month,
+                                                                          month=d.month-1,
                                                                           day=d.day,
                                                                           size=s)
                for (d, s) in zip(dates, queue_sizes)]
@@ -49,7 +49,7 @@ for reviewer in reviewers:
                                legend='PRs in queue')]
 
     points = ["{{ x: new Date({year},{month},{day}), y: {oldest} }}".format(year=d.year,
-                                                                            month=d.month,
+                                                                            month=d.month-1,
                                                                             day=d.day,
                                                                             oldest=o)
               for (d, o) in zip(dates, oldest)]
@@ -58,7 +58,7 @@ for reviewer in reviewers:
                                legend='Oldest PR')]
 
     points = ["{{ x: new Date({year},{month},{day}), y: {average} }}".format(year=d.year,
-                                                                             month=d.month,
+                                                                             month=d.month-1,
                                                                              day=d.day,
                                                                              average=a)
               for (d, a) in zip(dates, averages)[-14:]]
