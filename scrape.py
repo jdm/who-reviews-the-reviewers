@@ -9,7 +9,7 @@ import sqlite3
 import urllib2
 
 def get_reviewers():
-    reviewers_conf = "https://raw.githubusercontent.com/servo/saltfs/master/homu/cfg.toml"
+    reviewers_conf = "https://raw.githubusercontent.com/servo/saltfs/master/homu/files/cfg.toml"
     f = urllib2.urlopen(reviewers_conf)
     contents = f.read()
     start_str = "{% set reviewers = ["
