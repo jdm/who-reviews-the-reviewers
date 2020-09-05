@@ -40,7 +40,7 @@ def scrape_into_db():
     today = datetime.datetime.today()
 
     for reviewer in reviewers:
-        print "Processing %s" % reviewer
+        print("Processing %s" % reviewer)
         req = urllib2.Request(queue_url.format(reviewer), headers={
             'Accept': 'application/vnd.github.v3+json',
             'Authorization': 'Basic ' + base64.standard_b64encode('%s:%s' % (user, token)).replace('\n', ''),
