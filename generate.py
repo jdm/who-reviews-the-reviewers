@@ -74,5 +74,5 @@ conn.close()
 with open('template.html') as f:
     template = f.read()
 
-print template.format(entries='\n'.join(body),
-                      scripts='\n'.join(scripts))
+print(template.format(entries='\n'.join(body),
+                      scripts='\n'.join(scripts)))
