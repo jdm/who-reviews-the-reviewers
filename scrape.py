@@ -1,5 +1,5 @@
 import base64
-import ConfigParser
+from configparser import ConfigParser
 import datetime
 try:
     import json
