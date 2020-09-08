@@ -6,11 +6,11 @@ try:
 except:
     import simplejson as json
 import sqlite3
-import urllib2
+from urllib.request import urlopen, Request
 
 def get_reviewers():
     reviewers_conf = "https://raw.githubusercontent.com/servo/saltfs/master/homu/files/cfg.toml"
-    f = urllib2.urlopen(reviewers_conf)
+    f = urlopen(reviewers_conf)
     contents = f.read()
     start_str = "{% set reviewers = ["
     start = contents.find(start_str)
@@ -41,11 +41,11 @@ def scrape_into_db():
 
     for reviewer in reviewers:
         print("Processing %s" % reviewer)
-        req = urllib2.Request(queue_url.format(reviewer), headers={
+        req = Request(queue_url.format(reviewer), headers={
             'Accept': 'application/vnd.github.v3+json',
             'Authorization': 'Basic ' + base64.standard_b64encode('%s:%s' % (user, token)).replace('\n', ''),
         })
-        reviews = urllib2.urlopen(req)
+        reviews = urlopen(req)
         data = json.loads(reviews.read())
         queue_size = len(data)
         average_age = 0
