@@ -11,7 +11,7 @@ from urllib.request import urlopen, Request
 def get_reviewers():
     reviewers_conf = "https://raw.githubusercontent.com/servo/saltfs/master/homu/files/cfg.toml"
     f = urlopen(reviewers_conf)
-    contents = f.read()
+    contents = f.read().decode("utf-8")
     start_str = "{% set reviewers = ["
     start = contents.find(start_str)
     assert start != -1
