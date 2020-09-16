@@ -1,5 +1,5 @@
 import base64
-from configparser import ConfigParser
+import configparser
 import datetime
 try:
     import json
@@ -30,7 +30,7 @@ def get_reviewers():
 def scrape_into_db():
     reviewers = get_reviewers()
 
-    config = ConfigParser.RawConfigParser()
+    config = configparser.RawConfigParser()
     config.read('./config')
     user = config.get('github', 'user')
     token = config.get('github', 'token')
