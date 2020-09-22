@@ -32,8 +32,8 @@ def scrape_into_db():
 
     config = configparser.RawConfigParser()
     config.read('./config')
-    user = config.get('github', 'user')
-    token = config.get('github', 'token')
+    user = config.get('github', 'user').encode('ascii')
+    token = config.get('github', 'token').encode('ascii')
 
     queue_url = "https://api.github.com/repos/servo/servo/issues?assignee={0}&labels=S-awaiting-review"
     to_insert = []
@@ -43,7 +43,7 @@ def scrape_into_db():
         print("Processing %s" % reviewer)
         req = Request(queue_url.format(reviewer), headers={
             'Accept': 'application/vnd.github.v3+json',
-            'Authorization': 'Basic ' + base64.standard_b64encode('%s:%s' % (user, token)).replace('\n', ''),
+            'Authorization': 'Basic ' + base64.standard_b64encode(b'%s:%s' % (user, token)).replace('\n', ''),
         })
         reviews = urlopen(req)
         data = json.loads(reviews.read())
