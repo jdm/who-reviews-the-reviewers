@@ -42,8 +42,8 @@ def scrape_into_db():
     for reviewer in reviewers:
         print("Processing %s" % reviewer)
         req = Request(queue_url.format(reviewer), headers={
-            'Accept': 'application/vnd.github.v3+json',
-            'Authorization': 'Basic ' + base64.standard_b64encode(b'%s:%s' % (user, token)).replace('\n', ''),
+            'Accept': b'application/vnd.github.v3+json',
+            'Authorization': b'Basic ' + base64.standard_b64encode(b'%s:%s' % (user, token)).replace(b'\n', b''),
         })
         reviews = urlopen(req)
         data = json.loads(reviews.read())
