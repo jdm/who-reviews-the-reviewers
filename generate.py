@@ -43,7 +43,7 @@ for reviewer in reviewers:
                                                                           month=d.month-1,
                                                                           day=d.day,
                                                                           size=s)
-               for (d, s) in zip(dates, queue_sizes)[-14:]]
+               for (d, s) in list(zip(dates, queue_sizes))[-14:]]
     all_points += [data.format(points=',\n'.join(points),
                                axis='primary',
                                legend='PRs in queue')]
@@ -52,7 +52,7 @@ for reviewer in reviewers:
                                                                             month=d.month-1,
                                                                             day=d.day,
                                                                             oldest=o)
-              for (d, o) in zip(dates, oldest)[-14:]]
+              for (d, o) in list(zip(dates, oldest))[-14:]]
     all_points += [data.format(points=',\n'.join(points),
                                axis='secondary',
                                legend='Oldest PR')]
@@ -61,7 +61,7 @@ for reviewer in reviewers:
                                                                              month=d.month-1,
                                                                              day=d.day,
                                                                              average=a)
-              for (d, a) in zip(dates, averages)[-14:]]
+              for (d, a) in list(zip(dates, averages))[-14:]]
     all_points += [data.format(points=',\n'.join(points),
                                axis='secondary',
                                legend='Rolling average PR age')]
